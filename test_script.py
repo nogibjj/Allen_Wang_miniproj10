@@ -6,8 +6,6 @@ from mylib.lib import (
     example_transform,
     end_spark
 )
-import os
-import pandas as pd
 
 def test_spark():
     spark= start_spark("Test")
