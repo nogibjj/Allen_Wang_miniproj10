@@ -73,9 +73,9 @@ def query(spark, df, query, name):
 
 def describe(df):
     """Generate and log summary statistics."""
-    summary_stats_str = df.describe().toPandas().to_markdown()
-    log("summary data", summary_stats_str)
-    return df.describe()
+    summary = df.describe()
+    log("summary data", summary.toPandas().to_markdown())
+    return summary
 
 
 def example_transform(df):
