@@ -1,59 +1,57 @@
-# Allen_Wang_miniproj_9
+# Allen_Wang_miniproj_10
 
-[![CI](https://github.com/nogibjj/Allen_Wang_miniproj_9/actions/workflows/lint.yml/badge.svg)](https://github.com/nogibjj/Allen_Wang_miniproj_9/actions/runs/11633910551)
-[![CI](https://github.com/nogibjj/Allen_Wang_miniproj_9/actions/workflows/test.yml/badge.svg)](https://github.com/nogibjj/Allen_Wang_miniproj_9/actions/runs/11633910608)
-[![CI](https://github.com/nogibjj/Allen_Wang_miniproj_9/actions/workflows/install.yml/badge.svg)](https://github.com/nogibjj/Allen_Wang_miniproj_9/actions/runs/11633910562)
-[![CI](https://github.com/nogibjj/Allen_Wang_miniproj_9/actions/workflows/format.yml/badge.svg)](https://github.com/nogibjj/Allen_Wang_miniproj_9/actions/runs/10936070182)
+[![CI](https://github.com/nogibjj/Allen_Wang_miniproj_10/actions/workflows/badge.svg)](https://github.com/nogibjj/Allen_Wang_miniproj_10/actions)
 
 ## Overview
 
-This project demonstrates Continuous Integration (CI) and Continuous Deployment (CD) using GitHub Actions for a Python Data Science project, hosted on Google Colab for easy cloud access. The project uses Pandas and Polars for data analysis, nbval for notebook testing, and automated formatting and linting integrated within the CI/CD pipeline. It includes data manipulation tasks on a sample dataset, where the CI/CD pipeline automates testing, code quality checks, and deployment.
+This project uses **PySpark** to perform data processing on the **Titanic dataset**. It includes:
+
+- A **Spark SQL** query to analyze the data.
+- A **data transformation** that categorizes passengers by age group.
+- Results are logged in markdown format for analysis and reporting.
+- The project also includes a CI/CD pipeline for automated testing and deployment.
 
 ## Features
-- **Descriptive Statistics**: Python script and Jupyter notebook that:
-  - Reads a dataset (CSV or Excel).
-  - Generates summary statistics including mean, median, and standard deviation for numeric columns.
-  - Creates a histogram for data visualization.
-  - Perform data transformation and manipulation (notebook only)
+
+- **Data Processing with PySpark**:
+  - **Spark SQL Queries**: Executes SQL queries on the dataset to derive insights.
+  - **Data Transformation**: Adds new columns to the dataset by applying transformations, such as age categorization.
+
+- **Descriptive Statistics**:
+  - Generates summary statistics (mean, median, standard deviation) for numeric columns.
+  - Creates visualizations (e.g., histograms) to aid in data analysis.
+
 - **Automated Testing**:
-  - Tested using `pytest` with the `nbval` plugin for notebook validation.
-  - Unit tests for scripts and libraries.
+  - Includes unit tests for both the Python scripts and the Jupyter notebook using `pytest` with the `nbval` plugin for notebook validation.
+
 - **CI/CD Pipeline**:
-  - GitLab Actions run all Makefile commands with badges displayed in the README.
-  - The pipeline includes testing, code formatting, packages installing, and linting.
-    
+  - **GitHub Actions**: Runs all Makefile commands with badges displayed in the README for continuous integration and deployment.
+  - The pipeline includes:
+    - Testing: Runs unit tests to ensure code correctness.
+    - Code Formatting: Automatically formats the code using **Black**.
+    - Linting: Ensures clean code using **Ruff**.
+    - Package Installation: Automatically installs project dependencies.
+
 ## Project Structure
 
-- **Jupyter Notebook and main.py**: 
-  - Contains the main code for data analysis.
-  - Executes descriptive statistics using Polars or Pandas.
+- **Titanic Data Processing Script (`main.py`)**:
+  - Contains the main code for data processing and analysis using PySpark.
+  - Executes descriptive statistics and transformations using either **Pandas** or **Polars**.
 
-- **Makefile**: Provides commands for setup, testing, and formatting:
-  - `make install`: Installs project dependencies using `pip install -r requirements.txt`.
-  - `make format`: Formats all Python code using Black.
-  - `make lint`: Lints Python code using Ruff.
-  - `make test`: Runs all tests including notebook and script testing.
-
-- **test_script.py**: Unit tests for the Python script.
-
-- **test_lib.py**: Unit tests for the project’s Python libraries.
-
-- **requirements.txt**: Contains pinned dependencies required for the project.
-
-- **GitLab CI**: Automates the following actions:
-  - Runs all Makefile commands (install, test, lint, format).
-  - Displays badges for each task in the README.
-
-## Colab LInk 
-https://colab.research.google.com/drive/1_G-xXOaFPY2p2jGRrd61uKnsmvjO8Wc0#scrollTo=e2C7qz_JBns1
+- **Makefile**:
+  - Contains the following commands to manage the project:
+    - `make install`: Installs project dependencies via `pip`.
+    - `make format`: Formats the code with **Black**.
+    - `make lint`: Lints the code using **Ruff**.
+    - `make test`: Runs all unit tests for the Python scripts and Jupyter notebooks.
 
 ## Setup
 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/nogibjj/Allen_Wang_miniproj_9.git
-    cd Allen_Wang_miniproj_9
+    git clone https://github.com/nogibjj/Allen_Wang_miniproj_10.git
+    cd Allen_Wang_miniproj_10
     ```
 
 2. **Install dependencies:**
@@ -80,25 +78,15 @@ https://colab.research.google.com/drive/1_G-xXOaFPY2p2jGRrd61uKnsmvjO8Wc0#scroll
     make test
     ```
 
-## Data Analysis Script
+## How to Run the Script
 
-The Python script in `main.py` can perform the following:
+1. To run the **Titanic data processing script** (`main.py`), simply execute:
 
-### 1. **Read a Dataset**:
-   It reads a dataset from a CSV or Excel file.
+    ```bash
+    python main.py
+    ```
 
-### 2. **Generate Summary Statistics**:
-   For each numeric column, the script generates:
-   - Mean
-   - Median
-   - Standard Deviation
-    ![Alt text](summary.png)
-
-### 3. **Data Visualization**:
-   The script creates a histogram for the numeric columns in the dataset.
-    ![Alt text](output/Age_distribution.png)
-    ![Alt text](output/Fare_distribution.png)
-    ![Alt text](output/Pclass_distribution.png)
+2. This will load the Titanic dataset, perform the transformation and analysis, and log the results in `titanic_output.md`.
     
 
 
