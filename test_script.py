@@ -1,46 +1,41 @@
-from main import (
-    df_describe,
-    statistics_for_column,
-    create_save_visualization_for_all,
-    generate_md_report,
+from mylib.lib import (
+    start_spark,
+    load_data,
+    query,
+    describe,
+    example_transform,
+    end_spark
 )
 import os
 import pandas as pd
 
-
-def test_generate_report():
-    file_path = (
-        "https://web.stanford.edu/class/archive/cs/cs109/cs109.1166/stuff/titanic.csv"
-    )
-    generate_md_report(file_path, "Titanic Profiling Report")
-    assert os.path.isfile("Titanic Profiling Report.md")
+def test_spark():
+    spark= start_spark("Test")
+    assert spark is not None
+    end_spark(spark)
 
 
-def test_statistics_report():
-    file_path = (
-        "https://web.stanford.edu/class/archive/cs/cs109/cs109.1166/stuff/titanic.csv"
-    )
-    describe = df_describe(file_path)
-    assert type(describe) is pd.DataFrame
-    for column in describe.columns:
-        mean_values, _ , std_dev = statistics_for_column(file_path, column)
-        assert describe.loc["mean", column] == mean_values
-        # assert describe.loc["median", column] == median_values
-        assert describe.loc["std", column] == std_dev
+def test_load(spark):
+    df = load_data(spark, url="https://web.stanford.edu/class/archive/cs/cs109/cs109.1166/stuff/titanic.csv")
+    assert df is not None
+    return df
 
+def test_describe(df):
+    result = describe(df)
+    assert result is None
 
-def test_visualization():
-    file_path = (
-        "https://web.stanford.edu/class/archive/cs/cs109/cs109.1166/stuff/titanic.csv"
-    )
-    create_save_visualization_for_all(file_path)
-    describe = df_describe(file_path)
-    for column in describe.columns:
-        column_name = column.replace("/", "_")
-        assert os.path.isfile("output/"+ column_name + "_distribution.png")
+def test_query(spark,df):
+    result=query(spark, df, "SELECT Pclass, COUNT(*) as Count FROM TitanicData GROUP BY Pclass ORDER BY Pclass", "TitanicData")
+    assert result is not None
 
+def test_transform(df):
+    result = example_transform(df)
+    assert result is None
 
 if __name__ == "__main__":
-    test_statistics_report()
-    test_generate_report()
-    test_visualization()
+    test_spark()
+    spark = start_spark("TitanicTest")
+    df = test_load(spark)
+    test_describe(df)
+    test_query(spark, df)
+    test_transform(df)
