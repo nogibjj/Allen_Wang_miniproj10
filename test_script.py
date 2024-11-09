@@ -32,7 +32,7 @@ def test_load(df):
 # Test describe function
 def test_describe(df):
     result = describe(df)
-    assert result is None
+    assert result is not None
 
 # Test query function
 def test_query(spark, df):
@@ -42,4 +42,4 @@ def test_query(spark, df):
 # Test transformation
 def test_transform(df):
     result = example_transform(df)
-    assert result is None
+    assert result is not None
