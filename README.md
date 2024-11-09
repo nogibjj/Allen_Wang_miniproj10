@@ -1,6 +1,6 @@
 # Allen_Wang_miniproj_10
 
-[![CI](https://github.com/nogibjj/Allen_Wang_miniproj_10/actions/workflows/badge.svg)](https://github.com/nogibjj/Allen_Wang_miniproj_10/actions)
+[![CI](https://github.com/nogibjj/Allen_Wang_miniproj_10/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/Allen_Wang_miniproj_10/actions/workflows/cicd.yml)
 
 ## Overview
 
